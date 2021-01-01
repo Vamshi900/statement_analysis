@@ -14,7 +14,9 @@ const SignUp = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        history.push('/profile')
+        if (user) {
+            history.push('/profile')
+        }
     }, [user]);
 
 

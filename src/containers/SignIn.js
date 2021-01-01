@@ -13,7 +13,9 @@ const SignIn = () => {
 
 
     useEffect(() => {
-        history.push('/profile')
+        if(user){
+            history.push('/profile')
+        }
     }, [user]);
 
 

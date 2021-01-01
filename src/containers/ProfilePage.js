@@ -3,6 +3,7 @@ import { UserContext } from "../UserProvider";
 
 const ProfilePage = () => {
   const user = useContext(UserContext);
+  
   const { photoURL, displayName, email } = user;
   const defaultPhoto = 'https://res.cloudinary.com/dqcsk8rsc/image/upload/v1577268053/avatar-1-bitmoji_upgwhc.png';
   return (

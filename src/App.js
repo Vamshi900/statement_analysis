@@ -21,12 +21,11 @@ function App() {
         <Route path="/passwordReset">
           <PasswordReset />
         </Route>
-
         <Route path="/profile">
           <ProfilePage />
         </Route>
         <Route path="/">
-          {user ? <ProfilePage /> : <SignIn />}
+          {<SignIn />}
         </Route>
       </Switch>
 
