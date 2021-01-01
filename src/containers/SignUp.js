@@ -14,8 +14,6 @@ const SignUp = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        console.log(user);
-        console.log('history redirecting ');
         history.push('/profile')
     }, [user]);
 

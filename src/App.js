@@ -13,7 +13,6 @@ import PasswordReset from "./containers/PasswordReset";
 function App() {
   const user = null;
   return (
-    // <div className="App">
     <Router>
       <Switch>
         <Route path="/signUp">
@@ -29,22 +28,10 @@ function App() {
         <Route path="/">
           {user ? <ProfilePage /> : <SignIn />}
         </Route>
-        {/* <SignUp path="signUp" />
-          <SignIn path="/" />
-          <PasswordReset path="passwordReset" /> */}
       </Switch>
 
     </Router>
 
   );
 }
-{/* <Router>
-        <div>
-          <Switch>
-            <Route path="/">
-              Hello World!
-            </Route>
-          </Switch>
-        </div>
-      </Router> */}
 export default App;
