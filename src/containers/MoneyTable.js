@@ -1,4 +1,8 @@
+import React, { useState } from 'react';
 import DataTable, { createTheme } from 'react-data-table-component';
+import Button from '../shared/Button';
+import {convertArrayOfObjectsToCSV} from './helpers';
+import {headerColumns} from './constants';
 
 createTheme('solarized', {
     text: {
@@ -22,40 +26,36 @@ createTheme('solarized', {
     },
 });
 
-const columns = [
-    {
-        name: 'Date',
-        selector: 'date',
-        sortable: true,
-    },
-    {
-        name: 'Merchant',
-        selector: 'merchant',
-        sortable: true,
-        // right: true,
-    },
-    {
-        name: 'Type',
-        selector: 'type',
-    },
-    {
-        name: 'Amount',
-        selector: 'amount',
-        sortable: true,
-        // right: true,
-    },
-  
-];
 
-const MoneyTable = ({ data }) => (
+// Blatant "inspiration" from https://codepen.io/Jacqueline34/pen/pyVoWr
+const downloadCSV = (array) => {
+    const link = document.createElement('a');
+    let csv = convertArrayOfObjectsToCSV(array);
+    if (csv == null) return;
+    const filename = 'export.csv';
+    if (!csv.match(/^data:text\/csv/i)) {
+        csv = `data:text/csv;charset=utf-8,${csv}`;
+      }
+    const downloadData = encodeURI(csv);
+    link.setAttribute('href', downloadData);
+    link.setAttribute('download', filename);
+    link.click();
+}
 
-    <DataTable
+const Export = ({ onExport }) => (
+    <Button onClick={e => onExport(e.target.value)}>Export</Button>
+);
+const MoneyTable = ({ data }) => {
+    const actionsMemo = React.useMemo(() => <Export onExport={() => downloadCSV(data)} />, []);
+
+    return (<DataTable
         title="Ass hole this your spending "
-        columns={columns}
+        columns={headerColumns}
         data={data}
         selectableRows // add for checkbox selection
         theme="solarized"
-    />
-);
+        actions={actionsMemo}
+    />);
+};
 
-export default  MoneyTable;
+export default MoneyTable;

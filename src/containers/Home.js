@@ -33,6 +33,7 @@ const Home = () => {
 
     const handleOnDrop = (data) => {
         const parsed = parseData(data);
+        parsed.splice(0, 1)
         console.log(parsed);
         setParsedData(parsed);
     }
@@ -50,7 +51,7 @@ const Home = () => {
         <>
             <h2>Home Page</h2>
 
-            
+
 
             <CSVReader
                 onDrop={handleOnDrop}
