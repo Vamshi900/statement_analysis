@@ -1,3 +1,4 @@
+import React, { useContext } from "react";
 import './App.css';
 import {
   BrowserRouter as Router,
@@ -11,8 +12,9 @@ import ProfilePage from "./containers/ProfilePage";
 import PasswordReset from "./containers/PasswordReset";
 import Home from './containers/Home';
 
+import { UserContext } from "./UserProvider";
 function App() {
-  const user = null;
+  const user = useContext(UserContext);
   return (
     <Router>
       <Switch>
