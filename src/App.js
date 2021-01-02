@@ -9,6 +9,7 @@ import SignIn from "./containers/SignIn";
 import SignUp from "./containers/SignUp";
 import ProfilePage from "./containers/ProfilePage";
 import PasswordReset from "./containers/PasswordReset";
+import Home from './containers/Home';
 
 function App() {
   const user = null;
@@ -24,11 +25,13 @@ function App() {
         <Route path="/profile">
           <ProfilePage />
         </Route>
+        <Route path="/home">
+          <Home />
+        </Route>
         <Route path="/">
           {<SignIn />}
         </Route>
       </Switch>
-
     </Router>
 
   );
