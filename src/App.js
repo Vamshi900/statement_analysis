@@ -23,10 +23,10 @@ function App() {
           <PasswordReset />
         </Route>
         <Route path="/profile">
-          <ProfilePage />
+          {user ? <ProfilePage /> : <SignIn />}
         </Route>
         <Route path="/home">
-          <Home />
+          {user ? <Home /> : <SignIn />}
         </Route>
         <Route path="/">
           {<SignIn />}
