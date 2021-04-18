@@ -1,41 +1,36 @@
-import React, { useContext } from "react";
-import './App.css';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from "react-router-dom";
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
+import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
+import login from './pages/login';
+import signup from './pages/signup';
+import home from './pages/home';
 
-import SignIn from "./containers/SignIn";
-import SignUp from "./containers/SignUp";
-import ProfilePage from "./containers/ProfilePage";
-import PasswordReset from "./containers/PasswordReset";
-import Home from './containers/Home';
+const theme = createMuiTheme({
+	palette: {
+		primary: {
+			light: '#33c9dc',
+			main: '#FF5722',
+			dark: '#d50000',
+			contrastText: '#fff'
+		}
+  }
+});
 
-import { UserContext } from "./UserProvider";
 function App() {
-  const user = useContext(UserContext);
-  return (
-    <Router>
-      <Switch>
-        <Route path="/signUp">
-          <SignUp />
-        </Route>
-        <Route path="/passwordReset">
-          <PasswordReset />
-        </Route>
-        <Route path="/profile">
-          {user ? <ProfilePage /> : <SignIn />}
-        </Route>
-        <Route path="/home">
-          {user ? <Home /> : <SignIn />}
-        </Route>
-        <Route path="/">
-          {<SignIn />}
-        </Route>
-      </Switch>
-    </Router>
-
-  );
+	return (
+		<MuiThemeProvider theme={theme}>
+			<Router>
+				<div>
+					<Switch>
+						<Route exact path="/" component={home} />
+						<Route exact path="/login" component={login} />
+						<Route exact path="/signup" component={signup} />
+					</Switch>
+				</div>
+			</Router>
+		</MuiThemeProvider>
+	);
 }
+
 export default App;
